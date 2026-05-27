@@ -1,7 +1,5 @@
 # Argo Rollouts - Progressive Delivery for Kubernetes
 
-[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/argo-rollouts)](https://artifacthub.io/packages/helm/argo/argo-rollouts)
-
 ## What is Argo Rollouts?
 
 * Argo Rollouts
@@ -24,17 +22,18 @@
 
 ## Why Argo Rollouts?
 
-TODO:
-Kubernetes Deployments provides the `RollingUpdate` strategy which provide a basic set of safety guarantees (readiness probes) during an update
-* However the rolling update strategy faces many limitations:
-
-* Few controls over the speed of the rollout
-* Inability to control traffic flow to the new version
-* Readiness probes are unsuitable for deeper, stress, or one-time checks
-* No ability to query external metrics to verify an update
-* Can halt the progression, but unable to automatically abort and rollback the update
-
-For these reasons, in large scale high-volume production environments, a rolling update is often considered too risky of an update procedure since it provides no control over the blast radius, may rollout too aggressively, and provides no automated rollback upon failures.
+* Kubernetes Deployments built-in strategies
+  * `RollingUpdate` 
+    * provide
+      * basic set of safety guarantees (readiness probes) | update
+    * ⚠️SOMETIMES, too risky⚠️
+      * Reason:🧠limitations🧠
+    * ⚠️limitations⚠️
+      * | speed of the rollout, FEW controls 
+      * NOT POSSIBLE to control traffic flow -- to the -- NEW version
+      * Readiness probes are unsuitable for deeper, stress, or one-time checks
+      * No ability to query external metrics to verify an update
+      * Can halt the progression, but unable to automatically abort and rollback the update 
 
 ## Features
 
@@ -49,23 +48,23 @@ For these reasons, in large scale high-volume production environments, a rolling
 * Metric provider integration: Prometheus, Wavefront, Kayenta, Web, Kubernetes Jobs, Datadog, New Relic, InfluxDB
 
 ## Supported Traffic Shaping Integrations
-| Traffic Shaping Integration       | SetWeight                    | SetWeightExperiments        | SetMirror                  | SetHeader                  | Implemented As Plugin       |
-|-----------------------------------|------------------------------|-----------------------------|----------------------------|----------------------------|-----------------------------|
-| ALB Ingress Controller            | :white_check_mark: (stable)  | :white_check_mark: (stable) | :x:                        | :white_check_mark: (alpha) |                             |
-| Ambassador                        | :white_check_mark: (stable)  | :x:                         | :x:                        | :x:                        |                             |
-| Apache APISIX Ingress Controller  | :white_check_mark: (alpha)   | :x:                         | :x:                        | :white_check_mark: (alpha) |                             |
-| Istio                             | :white_check_mark: (stable)  | :white_check_mark: (stable) | :white_check_mark: (alpha) | :white_check_mark: (alpha) |                             |
-| Nginx Ingress Controller          | :white_check_mark: (stable)  | :x:                         | :x:                        | :x:                        |                             |
-| SMI                               | :white_check_mark: (stable)  | :white_check_mark: (stable) | :x:                        | :x:                        |                             |
-| Traefik                           | :white_check_mark: (stable)  | :x:                         | :x:                        | :x:                        |                             |
-| Contour                           | :white_check_mark: (beta)    | :x:                         | :x:                        | :x:                        | :heavy_check_mark:          |
-| Gateway API                       | :white_check_mark: (alpha)   | :x:                         | :x:                        | :x:                        | :heavy_check_mark:          |
+| Traffic Shaping Integration       | SetWeight     | SetWeightExperiments        | SetMirror            | SetHeader                  | Implemented As Plugin |
+|-----------------------------------|---------------|-----------------------------|----------------------|----------------------------|-----------------------|
+| ALB Ingress Controller            | ☑ (stable)    | ☑ (stable) | ❌                    | ☑ (alpha) |                       |
+| Ambassador                        | ☑ (stable)    | ❌                         | ❌                    | ❌                        |                       |
+| Apache APISIX Ingress Controller  | ☑ (alpha)     | ❌                         | ❌                    | ☑ (alpha) |                       |
+| Istio                             | ☑ (stable)    | ☑ (stable) | ☑ (alpha)            | ☑ (alpha) |                       |
+| Nginx Ingress Controller          | ☑ (stable)    | ❌                         | ❌                    | ❌                        |                       |
+| SMI                               | ☑ (stable)    | ☑ (stable) | ❌                    | ❌                        |                       |
+| Traefik                           | ☑ (stable)    | ❌                         | ❌                    | ❌                        |                       |
+| Contour                           | ☑ (beta)      | ❌                         | ❌                    | ❌                        | ✅                     |
+| Gateway API                       | ☑ (alpha)     | ❌                         | ❌                    | ❌                        | ✅                     |
 
-:white_check_mark: = Supported
+☑ = Supported
 
-:x: = Not Supported
+❌ = Not Supported
 
-:heavy_check_mark: = Yes
+✅ = Yes
 
 ## Documentation
 
@@ -73,31 +72,46 @@ For these reasons, in large scale high-volume production environments, a rolling
 
 ## Community
 
-You can reach the Argo Rollouts community and developers via the following channels:
-
-* Q & A: [Github Discussions](https://github.com/argoproj/argo-rollouts/discussions)
-* Chat: [The #argo-rollouts Slack channel](https://argoproj.github.io/community/join-slack)
-* Contributors Office Hours: [Every Thursday](https://calendar.google.com/calendar/u/0/embed?src=argoproj@gmail.com) | [Agenda](https://docs.google.com/document/d/1xkoFkVviB70YBzSEa4bDnu-rUZ1sIFtwKKG1Uw8XsY8)
-* User Community meeting: [First Wednesday of each month](https://calendar.google.com/calendar/u/0/embed?src=argoproj@gmail.com) | [Agenda](https://docs.google.com/document/d/1ttgw98MO45Dq7ZUHpIiOIEfbyeitKHNfMjbY5dLLMKQ)
+* [Github Discussions](https://github.com/argoproj/argo-rollouts/discussions)
+* [#argo-rollouts Slack channel](https://argoproj.github.io/community/join-slack)
+* [Contributors Office Hours - Every Thursday](https://calendar.google.com/calendar/u/0/embed?src=argoproj@gmail.com) | [Agenda](https://docs.google.com/document/d/1xkoFkVviB70YBzSEa4bDnu-rUZ1sIFtwKKG1Uw8XsY8)
+* [User Community meeting - First Wednesday of each month](https://calendar.google.com/calendar/u/0/embed?src=argoproj@gmail.com) | [Agenda](https://docs.google.com/document/d/1ttgw98MO45Dq7ZUHpIiOIEfbyeitKHNfMjbY5dLLMKQ)
 
 ## How does it work?
-Similar to the [deployment object](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), the Argo Rollouts controller will manage the creation, scaling, and deletion of [ReplicaSets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/). These ReplicaSets are defined by the `spec.template` field inside the Rollout resource, which uses the same pod template as the deployment object.
+TODO: 
+Similar to the [deployment object](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), the Argo Rollouts controller will manage the creation, scaling, and deletion of [ReplicaSets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
+* These ReplicaSets are defined by the `spec.template` field inside the Rollout resource, which uses the same pod template as the deployment object.
 
-When the `spec.template` is changed, that signals to the Argo Rollouts controller that a new ReplicaSet will be introduced. The controller will use the strategy set within the `spec.strategy` field in order to determine how the rollout will progress from the old ReplicaSet to the new ReplicaSet. Once that new ReplicaSet is scaled up (and optionally passes an [Analysis](features/analysis/)), the controller will mark it as "stable".
+When the `spec.template` is changed, that signals to the Argo Rollouts controller that a new ReplicaSet will be introduced
+* The controller will use the strategy set within the `spec.strategy` field in order to determine how the rollout will progress from the old ReplicaSet to the new ReplicaSet
+* Once that new ReplicaSet is scaled up (and optionally passes an [Analysis](features/analysis/)), the controller will mark it as "stable".
 
-If another change occurs in the `spec.template` during a transition from a stable ReplicaSet to a new ReplicaSet (i.e. you change the application version in the middle of a rollout), then the previously new ReplicaSet will be scaled down, and the controller will try to progress the ReplicasSet that reflects the updated `spec.template` field. There is more information on the behaviors of each strategy in the [spec](features/specification/) section.
+If another change occurs in the `spec.template` during a transition from a stable ReplicaSet to a new ReplicaSet (i.e. you change the application version in the middle of a rollout), then the previously new ReplicaSet will be scaled down, and the controller will try to progress the ReplicasSet that reflects the updated `spec.template` field
+* There is more information on the behaviors of each strategy in the [spec](features/specification/) section.
 
 ## Use cases of Argo Rollouts
 
-- A user wants to run last-minute functional tests on the new version before it starts to serve production traffic. With the BlueGreen strategy, Argo Rollouts allows users to specify a preview service and an active service. The Rollout will configure the preview service to send traffic to the new version while the active service continues to receive production traffic. Once a user is satisfied, they can promote the preview service to be the new active service. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-bluegreen.yaml))
+- A user wants to run last-minute functional tests on the new version before it starts to serve production traffic
+* With the BlueGreen strategy, Argo Rollouts allows users to specify a preview service and an active service
+* The Rollout will configure the preview service to send traffic to the new version while the active service continues to receive production traffic
+* Once a user is satisfied, they can promote the preview service to be the new active service. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-bluegreen.yaml))
 
-- Before a new version starts receiving live traffic, a generic set of steps need to be executed beforehand. With the BlueGreen Strategy, the user can bring up the new version without it receiving traffic from the active service. Once those steps finish executing, the rollout can cut over traffic to the new version.
+- Before a new version starts receiving live traffic, a generic set of steps need to be executed beforehand
+* With the BlueGreen Strategy, the user can bring up the new version without it receiving traffic from the active service
+* Once those steps finish executing, the rollout can cut over traffic to the new version.
 
-- A user wants to give a small percentage of the production traffic to a new version of their application for a couple of hours. Afterward, they want to scale down the new version and look at some metrics to determine if the new version is performant compared to the old version. Then they will decide if they want to roll out the new version for all of the production traffic or stick with the current version. With the canary strategy, the rollout can scale up a ReplicaSet with the new version to receive a specified percentage of traffic, wait for a specified amount of time, set the percentage back to 0, and then wait to rollout out to service all of the traffic once the user is satisfied. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-analysis-step.yaml))
+- A user wants to give a small percentage of the production traffic to a new version of their application for a couple of hours
+* Afterward, they want to scale down the new version and look at some metrics to determine if the new version is performant compared to the old version
+* Then they will decide if they want to roll out the new version for all of the production traffic or stick with the current version
+* With the canary strategy, the rollout can scale up a ReplicaSet with the new version to receive a specified percentage of traffic, wait for a specified amount of time, set the percentage back to 0, and then wait to rollout out to service all of the traffic once the user is satisfied. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-analysis-step.yaml))
 
-- A user wants to slowly give the new version more production traffic. They start by giving it a small percentage of the live traffic and wait a while before giving the new version more traffic. Eventually, the new version will receive all the production traffic. With the canary strategy, the user specifies the percentages they want the new version to receive and the amount of time to wait between percentages. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-canary.yaml))
+- A user wants to slowly give the new version more production traffic
+* They start by giving it a small percentage of the live traffic and wait a while before giving the new version more traffic
+* Eventually, the new version will receive all the production traffic
+* With the canary strategy, the user specifies the percentages they want the new version to receive and the amount of time to wait between percentages. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-canary.yaml))
 
-- A user wants to use the normal Rolling Update strategy from the deployment. If a user uses the canary strategy with no steps, the rollout will use the max surge and max unavailable values to roll to the new version. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-rolling-update.yaml))
+- A user wants to use the normal Rolling Update strategy from the deployment
+* If a user uses the canary strategy with no steps, the rollout will use the max surge and max unavailable values to roll to the new version. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-rolling-update.yaml))
 
 ## Who uses Argo Rollouts?
 

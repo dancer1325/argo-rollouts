@@ -1,14 +1,21 @@
 # Getting Started
 
-This guide will demonstrate various concepts and features of Argo Rollouts by going through
-deployment, upgrade, promotion, and abortion of a Rollout.
+* goal
+  * Argo Rollouts lifecycle
+    * deployment
+    * upgrade
+    * promotion
+    * abortion
 
 ## Requirements
-- Kubernetes cluster with argo-rollouts controller installed (see [install guide](installation.md#controller-installation))
-- kubectl with argo-rollouts plugin installed (see [install guide](installation.md#kubectl-plugin-installation))
+* running Kubernetes cluster
+* [install argo-rollouts controller](installation.md#controller-installation)
+* install kubectl
+  * \+ [argo-rollouts plugin](installation.md#kubectl-plugin-installation)
 
 ## 1. Deploying a Rollout
 
+TODO: 
 First we deploy a Rollout resource and a Kubernetes Service targeting that Rollout. The example
 Rollout in this guide utilizes a canary update strategy which sends 20% of traffic to the canary,
 followed by a manual promotion, and finally gradual automated traffic increases for the remainder
