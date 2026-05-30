@@ -17,11 +17,12 @@ based on the `spec.templates` field of the Experiment and waits until both are h
 duration passes, the Experiment scales down the ReplicaSets, and the user can start the Kayenta
 analysis run.
 
-- A user can use experiments to enable A/B/C testing by launching multiple experiments with a
-different version of their application for a long duration. Each Experiment has one PodSpec template
-that defines a specific version a user would want to run. The Experiment allows users to launch
-multiple experiments at once and keep each Experiment self-contained.
+* enable A/B/C testing
+  * == launch MULTIPLE experiments / DIFFERENT version / application | SAME time
+    * 1 PodSpec template / EACH Experiment
+    * EACH Experiment is self-contained
 
+TODO:
 - Launching a new version of an existing application with different labels to avoid receiving
 traffic from a Kubernetes service. The user can run tests against the new version before continuing
 the Rollout.

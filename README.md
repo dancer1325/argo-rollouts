@@ -83,10 +83,13 @@ Similar to the [deployment object](https://kubernetes.io/docs/concepts/workloads
 * These ReplicaSets are defined by the `spec.template` field inside the Rollout resource, which uses the same pod template as the deployment object.
 
 When the `spec.template` is changed, that signals to the Argo Rollouts controller that a new ReplicaSet will be introduced
-* The controller will use the strategy set within the `spec.strategy` field in order to determine how the rollout will progress from the old ReplicaSet to the new ReplicaSet
+* The controller will use the strategy set within the `spec.strategy` field in order to determine how the rollout will
+progress from the old ReplicaSet to the new ReplicaSet
 * Once that new ReplicaSet is scaled up (and optionally passes an [Analysis](features/analysis/)), the controller will mark it as "stable".
 
-If another change occurs in the `spec.template` during a transition from a stable ReplicaSet to a new ReplicaSet (i.e. you change the application version in the middle of a rollout), then the previously new ReplicaSet will be scaled down, and the controller will try to progress the ReplicasSet that reflects the updated `spec.template` field
+If another change occurs in the `spec.template` during a transition from a stable ReplicaSet to a new ReplicaSet 
+(i.e. you change the application version in the middle of a rollout), then the previously new ReplicaSet will be scaled down, 
+and the controller will try to progress the ReplicasSet that reflects the updated `spec.template` field
 * There is more information on the behaviors of each strategy in the [spec](features/specification/) section.
 
 ## Use cases of Argo Rollouts
@@ -103,7 +106,9 @@ If another change occurs in the `spec.template` during a transition from a stabl
 - A user wants to give a small percentage of the production traffic to a new version of their application for a couple of hours
 * Afterward, they want to scale down the new version and look at some metrics to determine if the new version is performant compared to the old version
 * Then they will decide if they want to roll out the new version for all of the production traffic or stick with the current version
-* With the canary strategy, the rollout can scale up a ReplicaSet with the new version to receive a specified percentage of traffic, wait for a specified amount of time, set the percentage back to 0, and then wait to rollout out to service all of the traffic once the user is satisfied. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-analysis-step.yaml))
+* With the canary strategy, the rollout can scale up a ReplicaSet with the new version to receive a specified percentage of traffic,
+wait for a specified amount of time, set the percentage back to 0, and then wait to rollout out to service all of the traffic once the user is satisfied
+* ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-analysis-step.yaml))
 
 - A user wants to slowly give the new version more production traffic
 * They start by giving it a small percentage of the live traffic and wait a while before giving the new version more traffic
@@ -112,10 +117,6 @@ If another change occurs in the `spec.template` during a transition from a stabl
 
 - A user wants to use the normal Rolling Update strategy from the deployment
 * If a user uses the canary strategy with no steps, the rollout will use the max surge and max unavailable values to roll to the new version. ([example](https://github.com/argoproj/argo-rollouts/blob/master/examples/rollout-rolling-update.yaml))
-
-## Who uses Argo Rollouts?
-
-[Official Argo Rollouts User List](https://github.com/argoproj/argo-rollouts/blob/master/USERS.md)
 
 ## Community Blogs and Presentations
 
