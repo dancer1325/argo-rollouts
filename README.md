@@ -87,9 +87,9 @@
     * | Rollout resource, `spec.template` field 
       * == deployment's pod's `spec.template`
       * | change spec.template`, Argo Rollouts controller introduces a NEW ReplicaSet
-* controller uses the strategy set within the `spec.strategy` field in order to determine how the rollout will
-progress from the old ReplicaSet to the new ReplicaSet
-* Once that new ReplicaSet is scaled up (and optionally passes an [Analysis](features/analysis/)), the controller will mark it as "stable".
+* controller determines how the rollout -- , based on `spec.strategy`, -- progress from the old ReplicaSet -- to the -- NEW ReplicaSet
+* | scale Up the NEW ReplicaSet + optionally passes an [Analysis](features/analysis/) (OPTIONALLY),
+  * the controller mark it -- as -- "stable"
 
 If another change occurs in the `spec.template` during a transition from a stable ReplicaSet to a new ReplicaSet 
 (i.e. you change the application version in the middle of a rollout), then the previously new ReplicaSet will be scaled down, 
