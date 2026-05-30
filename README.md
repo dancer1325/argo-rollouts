@@ -78,12 +78,16 @@
 * [User Community meeting - First Wednesday of each month](https://calendar.google.com/calendar/u/0/embed?src=argoproj@gmail.com) | [Agenda](https://docs.google.com/document/d/1ttgw98MO45Dq7ZUHpIiOIEfbyeitKHNfMjbY5dLLMKQ)
 
 ## How does it work?
-TODO: 
-Similar to the [deployment object](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), the Argo Rollouts controller will manage the creation, scaling, and deletion of [ReplicaSets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
-* These ReplicaSets are defined by the `spec.template` field inside the Rollout resource, which uses the same pod template as the deployment object.
 
-When the `spec.template` is changed, that signals to the Argo Rollouts controller that a new ReplicaSet will be introduced
-* The controller will use the strategy set within the `spec.strategy` field in order to determine how the rollout will
+- Argo Rollouts controller 
+   - manages the creation, scaling, and deletion of [ReplicaSets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
+
+* ReplicaSets
+  * way to define
+    * | Rollout resource, `spec.template` field 
+      * == deployment's pod's `spec.template`
+      * | change spec.template`, Argo Rollouts controller introduces a NEW ReplicaSet
+* controller uses the strategy set within the `spec.strategy` field in order to determine how the rollout will
 progress from the old ReplicaSet to the new ReplicaSet
 * Once that new ReplicaSet is scaled up (and optionally passes an [Analysis](features/analysis/)), the controller will mark it as "stable".
 
